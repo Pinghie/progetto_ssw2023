@@ -6,6 +6,20 @@ import { servizioDatabase } from '../app.service';
   templateUrl: './ricerca.component.html',
   styleUrls: ['./ricerca.component.css'],
 })
+export class Archivio {
+  lista: Array<Object>;
+  /*
+  cercaLibro(stringa) {
+    return this.lista.filter((value) => {
+      return value.titolo
+        .concat(value.autore)
+        .toLowerCase()
+        .includes(stringa.toLowerCase());
+    });
+  }
+  */
+}
+
 export class RicercaComponent implements OnInit {
   constructor(private interazione: servizioDatabase) {}
 
@@ -16,14 +30,13 @@ export class RicercaComponent implements OnInit {
     this.estraiDati();
   }
 
-  estraiDati() {
-    const jsonData = this.interazione.getData().subscribe({
-      next: (x: any) => console.log(x),
-      error: (err) => console.error('aa'),
-    });
-  }
+  estraiDati() {}
 
   ngOnInit() {
-    console.log('aaa');
+    this.interazione.getData().subscribe({
+      next: (x: any) => console.log(JSON.parse(x)),
+      error: (err) =>
+        console.error('Observer got an error: ' + JSON.stringify(err)),
+    });
   }
 }
