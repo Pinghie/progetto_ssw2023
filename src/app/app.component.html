@@ -1,7 +1,16 @@
 <div *ngIf="vista === 'home'">
   <h3>Gestione biblioteca</h3>
-  <button>Ricerca</button> <br />
-  <button (click)="inserimentoPremuto()">Inserimento</button>
+  <button (click)="tastoPremuto('ricerca')">Ricerca</button> <br />
+  <button (click)="tastoPremuto('inserimento')">Inserimento</button>
 </div>
 
 <app-inserimento *ngIf="vista === 'inserimento'"></app-inserimento>
+
+<app-ricerca *ngIf="vista === 'ricerca'"></app-ricerca>
+
+<div *ngIf="vista !== 'home'">
+  <br />
+  <button (click)="tastoPremuto('home')">Home</button>
+</div>
+
+{{vista}}

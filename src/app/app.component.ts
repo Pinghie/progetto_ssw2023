@@ -8,7 +8,7 @@ import { Component, VERSION } from '@angular/core';
 export class AppComponent {
   vista: string = 'home';
 
-  inserimentoPremuto() {
-    this.vista = 'inserimento';
+  tastoPremuto(direzione: string) {
+    this.vista = direzione;
   }
 }
