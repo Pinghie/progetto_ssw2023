@@ -11,7 +11,9 @@ export class GestioneComponent implements OnInit {
 
   risultato = this.ricercaComponent.listaRisultante[0];
 
+  
+
   ngOnInit() {
-    console.log(this.risultato['prestito']);
+    console.log(this.risultato['prestato']);
   }
 }

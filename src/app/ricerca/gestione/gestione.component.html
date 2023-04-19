@@ -5,10 +5,13 @@
 </div>
 
 <!--Se non è prestato-->
-<h4>Prestito</h4>
-<label>Nominativo:</label> <input type="text" />
-<br />
-<button>Rimozione</button>
-
+<div *ngIf="risultato['prestato'] === ''">
+  <h4>Prestito</h4>
+  <label>Nominativo:</label> <input type="text" />
+  <br />
+  <button>Rimozione</button>
+</div>
 <!--Se è prestato-->
-<button>Restituzione</button>
+<div *ngIf="risultato['prestato'] !== ''">
+  <button>Restituzione</button>
+</div>

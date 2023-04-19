@@ -1,6 +1,8 @@
 <h3>Inserimento di un nuovo volume</h3>
-<label>Autore:</label><input type="text" /><br />
-<label>Titolo:</label><input type="text" /><br />
-<label>Posizione:</label><input type="text" /><br />
+<label>Autore:</label><input #autore type="text" /><br />
+<label>Titolo:</label><input #titolo type="text" /><br />
+<label>Posizione:</label><input #posizione type="text" /><br />
 
-<button>Inserisci</button>
+<button (click)="inserimento(autore.value, titolo.value, posizione.value)">
+  Inserisci
+</button>
