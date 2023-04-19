@@ -1,11 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { servizioDatabase } from '../app.service';
 
-@Component({
-  selector: 'app-ricerca',
-  templateUrl: './ricerca.component.html',
-  styleUrls: ['./ricerca.component.css'],
-})
 export class Archivio {
   lista: Array<Object>;
   /*
@@ -20,10 +15,15 @@ export class Archivio {
   */
 }
 
+@Component({
+  selector: 'app-ricerca',
+  templateUrl: './ricerca.component.html',
+  styleUrls: ['./ricerca.component.css'],
+})
 export class RicercaComponent implements OnInit {
   constructor(private interazione: servizioDatabase) {}
 
-  jsonData: string = 'aaa';
+  dati: Archivio;
 
   onSearchChange(searchValue: string) {
     console.log(searchValue);
@@ -34,9 +34,10 @@ export class RicercaComponent implements OnInit {
 
   ngOnInit() {
     this.interazione.getData().subscribe({
-      next: (x: any) => console.log(JSON.parse(x)),
+      next: (x: any) => (this.dati = JSON.parse(x)),
       error: (err) =>
         console.error('Observer got an error: ' + JSON.stringify(err)),
     });
+    console.log(this.dati);
   }
 }
