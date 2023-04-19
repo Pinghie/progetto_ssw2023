@@ -6,5 +6,9 @@ import { Component, VERSION } from '@angular/core';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  name = 'Angular ' + VERSION.major;
+  vista: string = 'home';
+
+  inserimentoPremuto() {
+    this.vista = 'inserimento';
+  }
 }
