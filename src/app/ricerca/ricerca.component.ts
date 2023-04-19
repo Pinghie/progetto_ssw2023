@@ -14,16 +14,22 @@ export class RicercaComponent implements OnInit {
   constructor(private interazione: servizioDatabase) {}
 
   dati: any;
+  nRisultati: Number = 0;
+  vista = String;
 
   onSearchChange(stringaDigitata: string) {
-    console.log(
-      this.dati.filter((value) => {
-        return value.titolo
-          .concat(value.autore)
-          .toLowerCase()
-          .includes(stringaDigitata.toLowerCase());
-      })
-    );
+    let listaRisultante: Array<Object>;
+    listaRisultante = this.dati.filter((value) => {
+      return value.titolo
+        .concat(value.autore)
+        .toLowerCase()
+        .includes(stringaDigitata.toLowerCase());
+    });
+    this.nRisultati = listaRisultante.length;
+    if(this.nRisultati === 1)
+    {
+
+    }
   }
 
   ngOnInit() {

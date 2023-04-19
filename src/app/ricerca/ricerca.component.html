@@ -1,3 +1,11 @@
-<h3>Ricerca per titolo e autore</h3>
-<input #testoRicerca type="text" (keyup)="onSearchChange(testoRicerca.value)" />
-<p>Risultati</p>
+<div *ngIf="nRisultati !== 1">
+  <h3>Ricerca per titolo e autore</h3>
+  <input
+    #testoRicerca
+    type="text"
+    (keyup)="onSearchChange(testoRicerca.value)"
+  />
+  <p>Sono stati trovati {{ nRisultati }} risultati</p>
+</div>
+
+<app-gestione *ngIf="nRisultati === 1"></app-gestione>
