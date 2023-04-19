@@ -18,6 +18,6 @@ import { servizioDatabase } from './app.service';
     GestioneComponent,
   ],
   bootstrap: [AppComponent],
-  providers: [servizioDatabase],
+  providers: [servizioDatabase, RicercaComponent],
 })
 export class AppModule {}

@@ -1,5 +1,9 @@
 <h3>Descrizione del documento</h3>
-info
+<div *ngFor="let item of risultato | keyvalue">
+  <b>{{ item.key }}</b
+  >:{{ item.value }}
+</div>
+
 <!--Se non è prestato-->
 <h4>Prestito</h4>
 <label>Nominativo:</label> <input type="text" />

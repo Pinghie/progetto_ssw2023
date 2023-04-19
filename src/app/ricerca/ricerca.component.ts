@@ -16,20 +16,16 @@ export class RicercaComponent implements OnInit {
   dati: any;
   nRisultati: Number = 0;
   vista = String;
+  listaRisultante: Array<Object>;
 
   onSearchChange(stringaDigitata: string) {
-    let listaRisultante: Array<Object>;
-    listaRisultante = this.dati.filter((value) => {
+    this.listaRisultante = this.dati.filter((value) => {
       return value.titolo
         .concat(value.autore)
         .toLowerCase()
         .includes(stringaDigitata.toLowerCase());
     });
-    this.nRisultati = listaRisultante.length;
-    if(this.nRisultati === 1)
-    {
-
-    }
+    this.nRisultati = this.listaRisultante.length;
   }
 
   ngOnInit() {
