@@ -2,17 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { servizioDatabase } from '../app.service';
 
 export class Archivio {
-  lista: Array<Object>;
-  /*
-  cercaLibro(stringa) {
-    return this.lista.filter((value) => {
-      return value.titolo
-        .concat(value.autore)
-        .toLowerCase()
-        .includes(stringa.toLowerCase());
-    });
-  }
-  */
+  lista: any;
 }
 
 @Component({
@@ -23,14 +13,18 @@ export class Archivio {
 export class RicercaComponent implements OnInit {
   constructor(private interazione: servizioDatabase) {}
 
-  dati: Archivio;
+  dati: any;
 
-  onSearchChange(searchValue: string) {
-    console.log(searchValue);
-    this.estraiDati();
+  onSearchChange(stringaDigitata: string) {
+    console.log(
+      this.dati.filter((value) => {
+        return value.titolo
+          .concat(value.autore)
+          .toLowerCase()
+          .includes(stringaDigitata.toLowerCase());
+      })
+    );
   }
-
-  estraiDati() {}
 
   ngOnInit() {
     this.interazione.getData().subscribe({
@@ -38,6 +32,5 @@ export class RicercaComponent implements OnInit {
       error: (err) =>
         console.error('Observer got an error: ' + JSON.stringify(err)),
     });
-    console.log(this.dati);
   }
 }
