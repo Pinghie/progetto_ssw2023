@@ -7,14 +7,23 @@ import { servizioDatabase } from '../app.service';
   styleUrls: ['./ricerca.component.css'],
 })
 export class RicercaComponent implements OnInit {
-  /*
   constructor(private interazione: servizioDatabase) {}
 
-  jsonData: string = '';
+  jsonData: string = 'aaa';
+
+  onSearchChange(searchValue: string) {
+    console.log(searchValue);
+    this.estraiDati();
+  }
 
   estraiDati() {
-    const jsonData = this.interazione.getData();
+    const jsonData = this.interazione.getData().subscribe({
+      next: (x: any) => console.log(x),
+      error: (err) => console.error('aa'),
+    });
   }
-  */
-  ngOnInit() {}
+
+  ngOnInit() {
+    console.log('aaa');
+  }
 }
