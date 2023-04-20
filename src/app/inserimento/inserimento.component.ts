@@ -28,7 +28,7 @@ export class InserimentoComponent implements OnInit {
       next: (x: any) => {
         x = JSON.parse(x);
         console.log(x);
-        console.log(x.push(libro));
+        console.log(x.push(libro)); //controllare che libro.posizione non sia già dentro x
         console.log(x);
         console.log(JSON.stringify(x));
         /*this.interazione.setData(x).subscribe({
