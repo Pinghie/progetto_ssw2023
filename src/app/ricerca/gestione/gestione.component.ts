@@ -11,9 +11,17 @@ export class GestioneComponent implements OnInit {
 
   risultato = this.ricercaComponent.listaRisultante[0];
 
-  rimozione() {}
+  rimozione() {
+    console.log('AAA');
+    this.risultato['posizione'];
+    console.log(this.ricercaComponent.archivio);
+    let nuovoArchivio = this.ricercaComponent.archivio.filter(
+      (value) => value['posizione'] != this.risultato['posizione']
+    );
+    console.log(nuovoArchivio);
+  }
 
   ngOnInit() {
-    console.log(this.ricercaComponent.listaRisultante[0]);
+    console.log(this.ricercaComponent.archivio);
   }
 }
