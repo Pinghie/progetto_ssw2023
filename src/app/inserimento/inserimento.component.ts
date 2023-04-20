@@ -23,31 +23,26 @@ class Libro {
 export class InserimentoComponent implements OnInit {
   constructor(private interazione: servizioDatabase) {}
 
+  errore: string = '';
+
   inserimento(autore: string, titolo: string, posizione: string) {
-    //console.log(autore, titolo, posizione);
     let archivio: Array<Object>;
     const libro = new Libro(autore, titolo, posizione);
-
-    console.log(libro);
 
     this.interazione.getData().subscribe({
       next: (x: string) => {
         archivio = JSON.parse(x);
-        let posizioneOccupata = archivio.every((value) => {
-          return value['posizione'] == libro.posizione;
-        });
-        console.log(posizioneOccupata);
-        archivio.push(libro); //controllare che libro.posizione non sia già dentro x
-
-        console.log(JSON.stringify(archivio));
-        /*this.interazione.setData(x).subscribe({
-          next: (y: any) => console.log('andata'),
-          error: (err) =>
-            console.log('1Observer got an error: ' + JSON.stringify(err)),
-        });*/
+        if (archivio.every((value) => value['posizione'] !== libro.posizione)) {
+          archivio.push(libro);
+          this.interazione.setData(JSON.stringify(archivio)).subscribe({
+            next: () => console.log('andata'),
+            error: (err) =>
+              console.log('Observer got an error: ' + JSON.stringify(err)),
+          });
+        } else this.errore = 'Esiste già un libro in questa posizione';
       },
       error: (err) =>
-        console.error('2Observer got an error: ' + JSON.stringify(err)),
+        console.error('Observer got an error: ' + JSON.stringify(err)),
     });
   }
 

@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { servizioDatabase } from '../app.service';
 
-export class Archivio {
-  lista: any;
-}
-
 @Component({
   selector: 'app-ricerca',
   templateUrl: './ricerca.component.html',
@@ -13,14 +9,14 @@ export class Archivio {
 export class RicercaComponent implements OnInit {
   constructor(private interazione: servizioDatabase) {}
 
-  dati: any;
+  archivio: Array<Object>;
   nRisultati: Number = 0;
   listaRisultante: Array<Object>;
 
   onSearchChange(stringaDigitata: string) {
-    this.listaRisultante = this.dati.filter((value) => {
-      return value.titolo
-        .concat(value.autore)
+    this.listaRisultante = this.archivio.filter((value) => {
+      return value['titolo']
+        .concat(value['autore'])
         .toLowerCase()
         .includes(stringaDigitata.toLowerCase());
     });
@@ -29,7 +25,7 @@ export class RicercaComponent implements OnInit {
 
   ngOnInit() {
     this.interazione.getData().subscribe({
-      next: (x: any) => (this.dati = JSON.parse(x)),
+      next: (x: string) => (this.archivio = JSON.parse(x)),
       error: (err) =>
         console.error('Observer got an error: ' + JSON.stringify(err)),
     });
