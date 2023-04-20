@@ -13,5 +13,5 @@
 </div>
 <!--Se è prestato-->
 <div *ngIf="risultato['prestato'] !== ''">
-  <button>Restituzione</button>
+  <button (click="restituzione()" )>Restituzione</button>
 </div>
