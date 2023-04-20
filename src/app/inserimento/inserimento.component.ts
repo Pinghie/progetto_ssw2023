@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppComponent } from '../app.component';
 import { servizioDatabase } from '../app.service';
 
 class Libro {
@@ -21,7 +22,10 @@ class Libro {
   styleUrls: ['./inserimento.component.css'],
 })
 export class InserimentoComponent implements OnInit {
-  constructor(private interazione: servizioDatabase) {}
+  constructor(
+    private interazione: servizioDatabase,
+    private app: AppComponent
+  ) {}
 
   errore: string = '';
 
@@ -35,7 +39,7 @@ export class InserimentoComponent implements OnInit {
         if (archivio.every((value) => value['posizione'] !== libro.posizione)) {
           archivio.push(libro);
           this.interazione.setData(JSON.stringify(archivio)).subscribe({
-            next: () => console.log('andata'),
+            next: () => (this.app.vista = 'home'),
             error: (err) =>
               console.log('Observer got an error: ' + JSON.stringify(err)),
           });

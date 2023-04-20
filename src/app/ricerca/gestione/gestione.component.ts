@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RicercaComponent } from '../ricerca.component';
+import { AppComponent } from '../../app.component';
 import { servizioDatabase } from '../../app.service';
 
 @Component({
@@ -10,7 +11,8 @@ import { servizioDatabase } from '../../app.service';
 export class GestioneComponent implements OnInit {
   constructor(
     private ricercaComponent: RicercaComponent,
-    private interazione: servizioDatabase
+    private interazione: servizioDatabase,
+    private app: AppComponent
   ) {}
 
   risultato = this.ricercaComponent.listaRisultante[0];
@@ -20,7 +22,7 @@ export class GestioneComponent implements OnInit {
       (value) => value['posizione'] != this.risultato['posizione']
     );
     this.interazione.setData(JSON.stringify(nuovoArchivio)).subscribe({
-      next: () => console.log('andata'),
+      next: () => (this.app.vista = 'home'),
       error: (err) =>
         console.log('Observer got an error: ' + JSON.stringify(err)),
     });
