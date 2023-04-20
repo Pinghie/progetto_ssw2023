@@ -23,10 +23,18 @@ export class GestioneComponent implements OnInit {
     this.aggiornaArchivio();
   }
 
+  prestito(nome: string) {
+    this.rimozioneOggetto();
+    this.risultato['prestato'] = nome;
+    this.nuovoArchivio.push(this.risultato);
+    this.aggiornaArchivio();
+  }
+
   restituzione() {
     this.rimozioneOggetto();
     this.risultato['prestato'] = '';
-    console.log(this.risultato);
+    this.nuovoArchivio.push(this.risultato);
+    this.aggiornaArchivio();
   }
 
   private rimozioneOggetto() {

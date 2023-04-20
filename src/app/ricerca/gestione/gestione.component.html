@@ -7,11 +7,12 @@
 <!--Se non è prestato-->
 <div *ngIf="risultato['prestato'] === ''">
   <h4>Prestito</h4>
-  <label>Nominativo:</label> <input type="text" />
+  <label>Nominativo:</label>
+  <input #nome type="text" (keyup.enter)="prestito(nome.value)" />
   <br />
   <button (click)="rimozione()">Rimozione</button>
 </div>
 <!--Se è prestato-->
 <div *ngIf="risultato['prestato'] !== ''">
-  <button (click="restituzione()" )>Restituzione</button>
+  <button (click)="restituzione()">Restituzione</button>
 </div>
