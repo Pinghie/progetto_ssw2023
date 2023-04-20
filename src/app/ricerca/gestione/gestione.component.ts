@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RicercaComponent } from '../ricerca.component';
 import { AppComponent } from '../../app.component';
 import { servizioDatabase } from '../../app.service';
+import { Libro } from '../../inserimento/inserimento.component';
 
 @Component({
   selector: 'app-gestione',
@@ -15,7 +16,7 @@ export class GestioneComponent implements OnInit {
     private app: AppComponent
   ) {}
 
-  risultato: object = this.ricercaComponent.listaRisultante[0];
+  risultato: Libro = this.ricercaComponent.listaRisultante[0];
   nuovoArchivio: Array<Object>;
 
   rimozione() {

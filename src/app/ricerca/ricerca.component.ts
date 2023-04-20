@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { servizioDatabase } from '../app.service';
+import { Libro } from '../inserimento/inserimento.component';
 
 @Component({
   selector: 'app-ricerca',
@@ -9,9 +10,9 @@ import { servizioDatabase } from '../app.service';
 export class RicercaComponent implements OnInit {
   constructor(private interazione: servizioDatabase) {}
 
-  archivio: Array<Object>;
+  archivio: Array<Libro>;
   nRisultati: Number = 0;
-  listaRisultante: Array<Object>;
+  listaRisultante: Array<Libro>;
 
   onSearchChange(stringaDigitata: string) {
     this.listaRisultante = this.archivio.filter((value) => {

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AppComponent } from '../app.component';
 import { servizioDatabase } from '../app.service';
 
-class Libro {
+export class Libro {
   autore: string;
   titolo: string;
   posizione: string;
