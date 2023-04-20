@@ -15,7 +15,6 @@ export class RicercaComponent implements OnInit {
 
   dati: any;
   nRisultati: Number = 0;
-  vista = String;
   listaRisultante: Array<Object>;
 
   onSearchChange(stringaDigitata: string) {

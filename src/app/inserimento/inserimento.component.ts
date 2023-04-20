@@ -11,6 +11,8 @@ export class InserimentoComponent implements OnInit {
 
   inserimento(autore: string, titolo: string, posizione: string) {
     //console.log(autore, titolo, posizione);
+    const libro = { autore: autore, titolo: titolo, posizione: posizione };
+    /*
     let aggiunta =
       ',{"autore":"' +
       autore +
@@ -19,14 +21,15 @@ export class InserimentoComponent implements OnInit {
       '","posizione":"' +
       posizione +
       '","prestato":""}]';
-    //console.log(aggiunta);
+      */
+    console.log(libro);
 
     this.interazione.getData().subscribe({
       next: (x: any) => {
-        x = x.substring(0, x.length - 1) + aggiunta;
+        x = JSON.parse(x);
         console.log(x);
-        console.log(JSON.parse(x));
-        console.log(JSON.stringify(JSON.parse(x)));
+        console.log(x.append(libro));
+        //console.log(JSON.stringify(JSON.parse(x)));
         /*this.interazione.setData(x).subscribe({
           next: (y: any) => console.log('andata'),
           error: (err) =>
