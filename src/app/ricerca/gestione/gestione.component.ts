@@ -11,9 +11,9 @@ export class GestioneComponent implements OnInit {
 
   risultato = this.ricercaComponent.listaRisultante[0];
 
-  
+  rimozione() {}
 
   ngOnInit() {
-    console.log(this.risultato['prestato']);
+    console.log(this.ricercaComponent.listaRisultante[0]);
   }
 }

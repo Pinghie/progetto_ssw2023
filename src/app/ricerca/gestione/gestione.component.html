@@ -9,7 +9,7 @@
   <h4>Prestito</h4>
   <label>Nominativo:</label> <input type="text" />
   <br />
-  <button>Rimozione</button>
+  <button (click)="rimozione()">Rimozione</button>
 </div>
 <!--Se è prestato-->
 <div *ngIf="risultato['prestato'] !== ''">
