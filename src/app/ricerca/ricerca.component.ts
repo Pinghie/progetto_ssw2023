@@ -11,7 +11,7 @@ export class RicercaComponent implements OnInit {
   constructor(private interazione: servizioDatabase) {}
 
   archivio: Array<Libro>;
-  nRisultati: Number = 0;
+  nRisultati: Number;
   listaRisultante: Array<Libro>;
 
   onSearchChange(stringaDigitata: string) {
@@ -26,7 +26,10 @@ export class RicercaComponent implements OnInit {
 
   ngOnInit() {
     this.interazione.getData().subscribe({
-      next: (x: string) => (this.archivio = JSON.parse(x)),
+      next: (x: string) => {
+        this.archivio = JSON.parse(x);
+        this.nRisultati = this.archivio.length;
+      },
       error: (err) =>
         console.error('Observer got an error: ' + JSON.stringify(err)),
     });

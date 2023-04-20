@@ -17,7 +17,7 @@ export class GestioneComponent implements OnInit {
   ) {}
 
   risultato: Libro = this.ricercaComponent.listaRisultante[0];
-  nuovoArchivio: Array<Object>;
+  nuovoArchivio: Array<Libro>;
 
   rimozione() {
     this.rimozioneOggetto();

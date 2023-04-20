@@ -30,7 +30,7 @@ export class InserimentoComponent implements OnInit {
   errore: string = '';
 
   inserimento(autore: string, titolo: string, posizione: string) {
-    let archivio: Array<Object>;
+    let archivio: Array<Libro>;
     const libro = new Libro(autore, titolo, posizione);
 
     this.interazione.getData().subscribe({
