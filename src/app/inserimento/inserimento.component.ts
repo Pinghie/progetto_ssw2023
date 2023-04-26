@@ -1,27 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { AppComponent } from '../app.component';
+import { Component } from '@angular/core';
+import { AppComponent, Libro } from '../app.component';
 import { servizioDatabase } from '../app.service';
-
-export class Libro {
-  autore: string;
-  titolo: string;
-  posizione: string;
-  prestato: string;
-
-  constructor(autore, titolo, posizione) {
-    this.autore = autore;
-    this.titolo = titolo;
-    this.posizione = posizione;
-    this.prestato = '';
-  }
-}
 
 @Component({
   selector: 'app-inserimento',
   templateUrl: './inserimento.component.html',
   styleUrls: ['./inserimento.component.css'],
 })
-export class InserimentoComponent implements OnInit {
+export class InserimentoComponent {
   constructor(
     private interazione: servizioDatabase,
     private app: AppComponent
@@ -34,21 +20,25 @@ export class InserimentoComponent implements OnInit {
     const libro = new Libro(autore, titolo, posizione);
 
     this.interazione.getData().subscribe({
-      next: (x: string) => {
-        archivio = JSON.parse(x);
+      next: (stringaArchivio: string) => {
+        archivio = JSON.parse(stringaArchivio);
         if (archivio.every((value) => value['posizione'] !== libro.posizione)) {
           archivio.push(libro);
           this.interazione.setData(JSON.stringify(archivio)).subscribe({
             next: () => (this.app.vista = 'home'),
             error: (err) =>
-              console.log('Observer got an error: ' + JSON.stringify(err)),
+              console.error(
+                "Errore nell'Observer SET in inserimento.component: " +
+                  JSON.stringify(err)
+              ),
           });
         } else this.errore = 'Esiste già un libro in questa posizione';
       },
       error: (err) =>
-        console.error('Observer got an error: ' + JSON.stringify(err)),
+        console.error(
+          "Errore nell'Observer GET in inserimento.component: " +
+            JSON.stringify(err)
+        ),
     });
   }
-
-  ngOnInit() {}
 }

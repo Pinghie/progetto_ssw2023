@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { RicercaComponent } from '../ricerca.component';
 import { AppComponent } from '../../app.component';
 import { servizioDatabase } from '../../app.service';
-import { Libro } from '../../inserimento/inserimento.component';
+import { Libro } from '../../app.component';
 
 @Component({
   selector: 'app-gestione',
   templateUrl: './gestione.component.html',
   styleUrls: ['./gestione.component.css'],
 })
-export class GestioneComponent implements OnInit {
+export class GestioneComponent {
   constructor(
     private ricercaComponent: RicercaComponent,
     private interazione: servizioDatabase,
@@ -25,15 +25,9 @@ export class GestioneComponent implements OnInit {
   }
 
   prestito(nome: string) {
+    //metodo utilizzato anche per la restituzione del libro
     this.rimozioneOggetto();
     this.risultato['prestato'] = nome;
-    this.nuovoArchivio.push(this.risultato);
-    this.aggiornaArchivio();
-  }
-
-  restituzione() {
-    this.rimozioneOggetto();
-    this.risultato['prestato'] = '';
     this.nuovoArchivio.push(this.risultato);
     this.aggiornaArchivio();
   }
@@ -48,9 +42,9 @@ export class GestioneComponent implements OnInit {
     this.interazione.setData(JSON.stringify(this.nuovoArchivio)).subscribe({
       next: () => (this.app.vista = 'home'),
       error: (err) =>
-        console.log('Observer got an error: ' + JSON.stringify(err)),
+        console.error(
+          "Errore nell'Observer in gestione.component: " + JSON.stringify(err)
+        ),
     });
   }
-
-  ngOnInit() {}
 }

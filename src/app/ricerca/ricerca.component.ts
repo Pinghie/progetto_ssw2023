@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { servizioDatabase } from '../app.service';
-import { Libro } from '../inserimento/inserimento.component';
+import { Libro } from '../app.component';
 
 @Component({
   selector: 'app-ricerca',
@@ -14,7 +14,7 @@ export class RicercaComponent implements OnInit {
   nRisultati: Number;
   listaRisultante: Array<Libro>;
 
-  onSearchChange(stringaDigitata: string) {
+  tastoDigitato(stringaDigitata: string) {
     this.listaRisultante = this.archivio.filter((value) => {
       return value['titolo']
         .concat(value['autore'])
@@ -26,12 +26,14 @@ export class RicercaComponent implements OnInit {
 
   ngOnInit() {
     this.interazione.getData().subscribe({
-      next: (x: string) => {
-        this.archivio = JSON.parse(x);
+      next: (stringaArchivio: string) => {
+        this.archivio = JSON.parse(stringaArchivio);
         this.nRisultati = this.archivio.length;
       },
       error: (err) =>
-        console.error('Observer got an error: ' + JSON.stringify(err)),
+        console.error(
+          "Errore nell'Observer in ricerca.component: " + JSON.stringify(err)
+        ),
     });
   }
 }

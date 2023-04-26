@@ -4,21 +4,19 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class servizioDatabase {
-  key = '3bfb3112';
-
   constructor(private http: HttpClient) {}
 
+  baseURL =
+    'https://eu-central-1.aws.data.mongodb-api.com/app/kvaas-giwjg/endpoint/';
+  key = '3bfb3112';
+
   public getData(): Observable<string> {
-    let base =
-      'https://eu-central-1.aws.data.mongodb-api.com/app/kvaas-giwjg/endpoint/get?key=';
-    let URL = base + this.key;
+    let URL = this.baseURL + 'get?key=' + this.key;
     return this.http.get<string>(URL);
   }
 
   public setData(data: string): Observable<Object> {
-    let base =
-      'https://eu-central-1.aws.data.mongodb-api.com/app/kvaas-giwjg/endpoint/set?key=';
-    let URL = base + this.key;
+    let URL = this.baseURL + 'set?key=' + this.key;
     return this.http.post(URL, data);
   }
 }

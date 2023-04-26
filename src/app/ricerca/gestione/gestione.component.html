@@ -1,7 +1,6 @@
 <h3>Descrizione del documento</h3>
 <div *ngFor="let item of risultato | keyvalue">
-  <b>{{ item.key }}</b
-  >:{{ item.value }}
+  <b *ngIf="item.value !== ''">{{ item.key }}: </b>{{ item.value }}
 </div>
 
 <!--Se non è prestato-->
@@ -15,5 +14,5 @@
 
 <!--Se è prestato-->
 <div *ngIf="risultato['prestato'] !== ''">
-  <button (click)="restituzione()">Restitutuisci libro</button>
+  <button (click)="prestito('')">Restituisci libro</button>
 </div>
