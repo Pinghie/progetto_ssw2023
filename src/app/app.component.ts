@@ -6,7 +6,7 @@ export class Libro {
   posizione: string;
   prestato: string;
 
-  constructor(autore, titolo, posizione) {
+  constructor(autore: string, titolo:string, posizione:string) {
     this.autore = autore;
     this.titolo = titolo;
     this.posizione = posizione;
