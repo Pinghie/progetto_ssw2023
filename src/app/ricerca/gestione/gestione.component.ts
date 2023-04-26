@@ -24,10 +24,11 @@ export class GestioneComponent {
   }
 
   prestito(nome: string) {
-    //metodo utilizzato anche per la restituzione del libro
-    this.rimozioneOggetto();
-    this.risultato['prestato'] = nome;
-    this.nuovoArchivio.push(this.risultato);
+    let index = this.ricercaComponent.archivio.findIndex(
+      (value) => this.risultato['posizione'] === value['posizione']
+    );
+    this.nuovoArchivio = this.ricercaComponent.archivio;
+    this.nuovoArchivio[index].prestato = nome;
     this.aggiornaArchivio();
   }
 
