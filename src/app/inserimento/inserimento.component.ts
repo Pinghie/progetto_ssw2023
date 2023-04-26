@@ -5,7 +5,6 @@ import { servizioDatabase } from '../app.service';
 @Component({
   selector: 'app-inserimento',
   templateUrl: './inserimento.component.html',
-  styleUrls: ['./inserimento.component.css'],
 })
 export class InserimentoComponent {
   constructor(
