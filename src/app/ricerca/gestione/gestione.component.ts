@@ -19,7 +19,9 @@ export class GestioneComponent {
   nuovoArchivio: Array<Libro>;
 
   rimozione() {
-    this.rimozioneOggetto();
+    this.nuovoArchivio = this.ricercaComponent.archivio.filter(
+      (value) => value['posizione'] != this.risultato['posizione']
+    );
     this.aggiornaArchivio();
   }
 
@@ -30,12 +32,6 @@ export class GestioneComponent {
     this.nuovoArchivio = this.ricercaComponent.archivio;
     this.nuovoArchivio[index].prestato = nome;
     this.aggiornaArchivio();
-  }
-
-  private rimozioneOggetto() {
-    this.nuovoArchivio = this.ricercaComponent.archivio.filter(
-      (value) => value['posizione'] != this.risultato['posizione']
-    );
   }
 
   private aggiornaArchivio() {
